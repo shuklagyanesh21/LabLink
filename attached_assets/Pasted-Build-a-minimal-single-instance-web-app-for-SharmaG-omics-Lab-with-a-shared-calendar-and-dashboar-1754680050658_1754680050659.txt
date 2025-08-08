@@ -1,0 +1,159 @@
+Build a minimal, single-instance web app for “SharmaG_omics Lab” with a shared calendar and dashboard (no auth, no ICS, no DB)
+
+Objectives
+
+Desktop-first, mobile-responsive web app for a shared lab calendar and dashboard.
+
+Public read-only usage by default; an “Admin mode” toggle in the UI (no login) reveals management controls.
+
+No RSVPs, no reminders, no recurring events. Timezone fixed to IST (Asia/Kolkata).
+
+No database; use in-memory data with optional local file persistence (JSON) if trivial.
+
+No ICS export/integration. No authentication or login.
+
+Users and roles (simplified)
+
+Public users: can view calendar, rotation list, announcements.
+
+Admin mode (UI toggle): shows controls to manage members, meetings, rotation, and announcements. No passwords/logins.
+
+Data model (in-memory structures; serialize to JSON file if easy)
+
+Member
+
+id, name, email (unique), role: {Admin, NonAdmin} — exactly one Admin record but no login
+
+studentStatus: {PhD, MTech, BTech, Intern}
+
+isActive (bool), internExpirationDate? (date)
+
+createdAt, updatedAt, deletedAt?
+
+Meeting
+
+id, title (required)
+
+presenterId (must reference active member)
+
+type: {PaperPresentation, WorkPresentation, Tutorial}
+
+date (date), startTime (time IST), endTime (time IST; default 60 min after start)
+
+description? (text)
+
+createdAt, updatedAt, deletedAt?
+
+Rotation
+
+id, memberId, orderIndex, active (bool), lastPresentedAt?
+
+Announcement
+
+id, title, body, createdAt, expiresAt?, deletedAt?
+
+AuditLog (optional, simple array in memory)
+
+id, action: {CREATE, UPDATE, DELETE}, entityType: {MEMBER, MEETING, ROTATION, ANNOUNCEMENT}, entityId, timestamp, metadata?
+
+Rules and behavior
+
+Soft-delete via deletedAt for members/meetings/announcements; default views exclude deleted items.
+
+Interns auto-deactivate when internExpirationDate < today (apply on reads/writes).
+
+Prevent overlapping meetings for the same presenter (block create/update and revert drag/drop).
+
+Timezone fixed to Asia/Kolkata; display all times in IST; internal storage can be local time to keep it simple.
+
+Member emails visible to all users.
+
+No delete confirmations; optional brief undo snackbar.
+
+Calendar and dashboard
+
+Calendar views: Week (default) and Month; simple Day view optional.
+
+Color-coding by meeting type: PaperPresentation, WorkPresentation, Tutorial.
+
+Create/edit meeting via modal/drawer: title, presenter, type, date, start/end time (IST), description.
+
+Drag-and-drop rescheduling (available when Admin mode is toggled on).
+
+Dashboard sections:
+
+Upcoming meetings (next 2 weeks)
+
+Rotation widget with full list and “Up next” highlighted (based on orderIndex and lastPresentedAt)
+
+Announcements box (create/manage in Admin mode; auto-hide expired)
+
+Mini panel showing active member counts and interns nearing expiration (visible in Admin mode)
+
+IST indicator/clock in header
+
+Stack and implementation (keep minimal)
+
+Frontend-only or simple full-stack:
+
+Option A (simplest): Single-page app with React + TypeScript + Tailwind + FullCalendar. All data in memory with optional localStorage or downloadable/uploadable JSON for persistence.
+
+Option B: Next.js + React + TypeScript + Tailwind + FullCalendar, using server components or simple in-process handlers to save/load a JSON file on disk. No database.
+
+Date/time: Keep in IST; use date-fns if needed. Avoid UTC complexity since IST-only.
+
+State management: Simple React state + context; persist to localStorage or a single data.json file if using Next.js server actions.
+
+No authentication, no sessions, no ICS.
+
+UI/UX
+
+Desktop-first, mobile responsive.
+
+Top nav: Dashboard, Calendar, Members, Rotation, Announcements, Audit Log (read-only list).
+
+“Admin mode” toggle button in the header to reveal/hide management controls.
+
+Inline validation; color legend for meeting types.
+
+Undo snackbar after delete operations (optional).
+
+Seed and defaults
+
+Lab name: “SharmaG_omics Lab”
+
+One Admin member record (flag only; no login)
+
+Student statuses: PhD, MTech, BTech, Intern
+
+Default meeting length: 60 minutes
+
+Seed some sample members, a sample rotation, and a few meetings to demo UI
+
+Deliverables
+
+Project scaffold (React or Next.js) with Tailwind and FullCalendar integrated.
+
+In-memory data stores (and optional JSON file/localStorage persistence helpers).
+
+Pages/components: Dashboard, Calendar, Members (CRUD), Rotation (order management + “Up next”), Announcements (CRUD), simple Audit Log viewer.
+
+Soft-delete handling and conflict checks for meetings.
+
+Seed script or built-in “Load sample data” button; “Export/Import JSON” buttons if easy.
+
+Acceptance criteria (practical)
+
+Anyone can open the app and view calendar, rotation, and announcements in IST.
+
+Toggling Admin mode reveals controls to:
+
+Manage members (create/edit/soft-delete), set studentStatus, set internExpirationDate, auto-deactivate interns.
+
+Manage meetings with color-coded types; block presenter double-booking; drag-and-drop to reschedule.
+
+Manage rotation order and see “Up next.”
+
+Manage announcements; expired announcements auto-hide.
+
+No login, no ICS, no database required; app runs locally as a simple single instance.
