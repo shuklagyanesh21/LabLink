@@ -1,0 +1,366 @@
+{
+  "members": [
+    [
+      "86b6854a-9ae4-4f40-bd2c-14e97c5e536f",
+      {
+        "name": "Dr. Sharma G",
+        "email": "sharma.g@lab.edu",
+        "role": "Admin",
+        "studentStatus": "PhD",
+        "isActive": true,
+        "id": "86b6854a-9ae4-4f40-bd2c-14e97c5e536f",
+        "createdAt": "2025-08-08T19:19:46.197Z",
+        "updatedAt": "2025-08-08T19:19:46.197Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+      {
+        "name": "Priya Patel",
+        "email": "priya.patel@lab.edu",
+        "role": "NonAdmin",
+        "studentStatus": "PhD",
+        "isActive": true,
+        "id": "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+        "createdAt": "2025-08-08T19:19:46.205Z",
+        "updatedAt": "2025-08-08T19:19:46.205Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "f3c26fc0-515b-484d-89fd-8e9ca779d9db",
+      {
+        "name": "Amit Kumar",
+        "email": "amit.kumar@lab.edu",
+        "role": "NonAdmin",
+        "studentStatus": "MTech",
+        "isActive": true,
+        "id": "f3c26fc0-515b-484d-89fd-8e9ca779d9db",
+        "createdAt": "2025-08-08T19:19:46.206Z",
+        "updatedAt": "2025-08-08T19:19:46.206Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "2157adff-87ab-46b5-9b0d-64679281cd59",
+      {
+        "name": "Sarah Chen",
+        "email": "sarah.chen@lab.edu",
+        "role": "NonAdmin",
+        "studentStatus": "BTech",
+        "isActive": true,
+        "id": "2157adff-87ab-46b5-9b0d-64679281cd59",
+        "createdAt": "2025-08-08T19:19:46.206Z",
+        "updatedAt": "2025-08-08T19:19:46.206Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "821a6797-12e8-4b83-ab9f-88da9b11a218",
+      {
+        "name": "Vikram Singh",
+        "email": "vikram.singh@lab.edu",
+        "role": "NonAdmin",
+        "studentStatus": "Intern",
+        "isActive": true,
+        "internExpirationDate": "2024-12-31T00:00:00.000Z",
+        "id": "821a6797-12e8-4b83-ab9f-88da9b11a218",
+        "createdAt": "2025-08-08T19:19:46.207Z",
+        "updatedAt": "2025-08-08T19:19:46.207Z",
+        "deletedAt": null
+      }
+    ]
+  ],
+  "meetings": [
+    [
+      "2d68f56f-1d07-4b0c-8518-0f5468bc97f0",
+      {
+        "title": "Machine Learning in Genomics",
+        "presenterId": "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+        "type": "PaperPresentation",
+        "date": "2024-12-15",
+        "startTime": "14:00",
+        "endTime": "15:00",
+        "description": "Review of recent ML applications in genomic analysis",
+        "id": "2d68f56f-1d07-4b0c-8518-0f5468bc97f0",
+        "createdAt": "2025-08-08T19:19:46.218Z",
+        "updatedAt": "2025-08-08T19:19:46.218Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "1ec96965-1251-4b76-af17-82435f2d6563",
+      {
+        "title": "CRISPR Progress Update",
+        "presenterId": "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+        "type": "WorkPresentation",
+        "date": "2024-12-17",
+        "startTime": "10:30",
+        "endTime": "11:30",
+        "description": "Current progress on CRISPR research project",
+        "id": "1ec96965-1251-4b76-af17-82435f2d6563",
+        "createdAt": "2025-08-08T19:19:46.219Z",
+        "updatedAt": "2025-08-08T19:19:46.219Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "0d8be68f-8e64-450e-9cc6-9abfac254064",
+      {
+        "title": "RNA-seq Analysis Tutorial",
+        "presenterId": "f3c26fc0-515b-484d-89fd-8e9ca779d9db",
+        "type": "Tutorial",
+        "date": "2024-12-20",
+        "startTime": "15:00",
+        "endTime": "16:00",
+        "description": "Step-by-step guide to RNA-seq data analysis",
+        "id": "0d8be68f-8e64-450e-9cc6-9abfac254064",
+        "createdAt": "2025-08-08T19:19:46.220Z",
+        "updatedAt": "2025-08-08T19:19:46.220Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "0b9f9d84-f98b-4977-885e-9f1745237a14",
+      {
+        "title": "yoyo",
+        "presenterId": "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+        "type": "WorkPresentation",
+        "date": "2025-08-05",
+        "startTime": "14:00",
+        "endTime": "15:00",
+        "description": "yooyoyo",
+        "id": "0b9f9d84-f98b-4977-885e-9f1745237a14",
+        "createdAt": "2025-08-08T19:28:20.163Z",
+        "updatedAt": "2025-08-08T19:28:20.163Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "9c696fb6-469a-424b-a957-061b5f61d17c",
+      {
+        "title": "hdt",
+        "presenterId": "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+        "type": "Tutorial",
+        "date": "2025-08-08",
+        "startTime": "14:00",
+        "endTime": "15:00",
+        "description": "",
+        "id": "9c696fb6-469a-424b-a957-061b5f61d17c",
+        "createdAt": "2025-08-08T19:32:01.341Z",
+        "updatedAt": "2025-08-08T19:32:01.341Z",
+        "deletedAt": null
+      }
+    ]
+  ],
+  "rotation": [
+    [
+      "d1b4d572-3f60-4c16-bfb2-128ba15ec26c",
+      {
+        "memberId": "2157adff-87ab-46b5-9b0d-64679281cd59",
+        "orderIndex": 1,
+        "active": true,
+        "id": "d1b4d572-3f60-4c16-bfb2-128ba15ec26c"
+      }
+    ],
+    [
+      "710e58ad-849f-4157-b7f8-07d464fdc135",
+      {
+        "memberId": "821a6797-12e8-4b83-ab9f-88da9b11a218",
+        "orderIndex": 2,
+        "active": true,
+        "id": "710e58ad-849f-4157-b7f8-07d464fdc135"
+      }
+    ],
+    [
+      "3b500bab-d133-4279-9a4a-caad5c314e53",
+      {
+        "memberId": "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+        "orderIndex": 3,
+        "active": true,
+        "id": "3b500bab-d133-4279-9a4a-caad5c314e53"
+      }
+    ]
+  ],
+  "announcements": [
+    [
+      "8a1eee9b-ea14-4ee9-9539-c66d2d90d0ae",
+      {
+        "title": "Lab Meeting Schedule Change",
+        "body": "Weekly lab meetings will be moved to Fridays starting next week.",
+        "expiresAt": "2024-12-31T00:00:00.000Z",
+        "id": "8a1eee9b-ea14-4ee9-9539-c66d2d90d0ae",
+        "createdAt": "2025-08-08T19:19:46.227Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "6cb63e17-427c-42b1-b871-5c007a5eff75",
+      {
+        "title": "Equipment Maintenance",
+        "body": "The PCR machine will be under maintenance from Dec 18-20.",
+        "expiresAt": "2024-12-21T00:00:00.000Z",
+        "id": "6cb63e17-427c-42b1-b871-5c007a5eff75",
+        "createdAt": "2025-08-08T19:19:46.228Z",
+        "deletedAt": null
+      }
+    ]
+  ],
+  "auditLogs": [
+    [
+      "4b01a5e2-591e-45bb-995c-3866290c5de3",
+      {
+        "action": "CREATE",
+        "entityType": "MEMBER",
+        "entityId": "86b6854a-9ae4-4f40-bd2c-14e97c5e536f",
+        "metadata": "{\"name\":\"Dr. Sharma G\"}",
+        "id": "4b01a5e2-591e-45bb-995c-3866290c5de3",
+        "timestamp": "2025-08-08T19:19:46.205Z"
+      }
+    ],
+    [
+      "87896121-698d-4d26-b5fa-863a7e4d3343",
+      {
+        "action": "CREATE",
+        "entityType": "MEMBER",
+        "entityId": "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+        "metadata": "{\"name\":\"Priya Patel\"}",
+        "id": "87896121-698d-4d26-b5fa-863a7e4d3343",
+        "timestamp": "2025-08-08T19:19:46.206Z"
+      }
+    ],
+    [
+      "78b2b532-3373-47e7-8f29-306ef19b0411",
+      {
+        "action": "CREATE",
+        "entityType": "MEMBER",
+        "entityId": "f3c26fc0-515b-484d-89fd-8e9ca779d9db",
+        "metadata": "{\"name\":\"Amit Kumar\"}",
+        "id": "78b2b532-3373-47e7-8f29-306ef19b0411",
+        "timestamp": "2025-08-08T19:19:46.206Z"
+      }
+    ],
+    [
+      "169d0866-bbf2-4dd6-9ef3-b93a8a277946",
+      {
+        "action": "CREATE",
+        "entityType": "MEMBER",
+        "entityId": "2157adff-87ab-46b5-9b0d-64679281cd59",
+        "metadata": "{\"name\":\"Sarah Chen\"}",
+        "id": "169d0866-bbf2-4dd6-9ef3-b93a8a277946",
+        "timestamp": "2025-08-08T19:19:46.207Z"
+      }
+    ],
+    [
+      "ae5f4b5c-543e-4891-8014-854610d97ee1",
+      {
+        "action": "CREATE",
+        "entityType": "MEMBER",
+        "entityId": "821a6797-12e8-4b83-ab9f-88da9b11a218",
+        "metadata": "{\"name\":\"Vikram Singh\"}",
+        "id": "ae5f4b5c-543e-4891-8014-854610d97ee1",
+        "timestamp": "2025-08-08T19:19:46.215Z"
+      }
+    ],
+    [
+      "7c75f0da-0031-4ff4-ba71-d81b8817b6d2",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "d1b4d572-3f60-4c16-bfb2-128ba15ec26c",
+        "metadata": "{\"memberId\":\"2157adff-87ab-46b5-9b0d-64679281cd59\"}",
+        "id": "7c75f0da-0031-4ff4-ba71-d81b8817b6d2",
+        "timestamp": "2025-08-08T19:19:46.217Z"
+      }
+    ],
+    [
+      "a2ec2d51-8474-408c-ac85-366904adb9b0",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "710e58ad-849f-4157-b7f8-07d464fdc135",
+        "metadata": "{\"memberId\":\"821a6797-12e8-4b83-ab9f-88da9b11a218\"}",
+        "id": "a2ec2d51-8474-408c-ac85-366904adb9b0",
+        "timestamp": "2025-08-08T19:19:46.218Z"
+      }
+    ],
+    [
+      "3073c046-9e5e-4739-b1b4-07be753bfaf9",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "3b500bab-d133-4279-9a4a-caad5c314e53",
+        "metadata": "{\"memberId\":\"68d85f8b-20a7-4eee-8c12-8b5a6e96070d\"}",
+        "id": "3073c046-9e5e-4739-b1b4-07be753bfaf9",
+        "timestamp": "2025-08-08T19:19:46.218Z"
+      }
+    ],
+    [
+      "2682ce65-830c-49f2-b1b7-7dfaf11b1504",
+      {
+        "action": "CREATE",
+        "entityType": "MEETING",
+        "entityId": "2d68f56f-1d07-4b0c-8518-0f5468bc97f0",
+        "metadata": "{\"title\":\"Machine Learning in Genomics\"}",
+        "id": "2682ce65-830c-49f2-b1b7-7dfaf11b1504",
+        "timestamp": "2025-08-08T19:19:46.219Z"
+      }
+    ],
+    [
+      "52cd5930-483a-4851-b6a7-5969582043ac",
+      {
+        "action": "CREATE",
+        "entityType": "MEETING",
+        "entityId": "1ec96965-1251-4b76-af17-82435f2d6563",
+        "metadata": "{\"title\":\"CRISPR Progress Update\"}",
+        "id": "52cd5930-483a-4851-b6a7-5969582043ac",
+        "timestamp": "2025-08-08T19:19:46.220Z"
+      }
+    ],
+    [
+      "e7c8345c-dddc-486b-91fb-22c8a27d7f5c",
+      {
+        "action": "CREATE",
+        "entityType": "MEETING",
+        "entityId": "0d8be68f-8e64-450e-9cc6-9abfac254064",
+        "metadata": "{\"title\":\"RNA-seq Analysis Tutorial\"}",
+        "id": "e7c8345c-dddc-486b-91fb-22c8a27d7f5c",
+        "timestamp": "2025-08-08T19:19:46.227Z"
+      }
+    ],
+    [
+      "20e81a81-f882-430e-9cc8-5a3d409f34bd",
+      {
+        "action": "CREATE",
+        "entityType": "ANNOUNCEMENT",
+        "entityId": "8a1eee9b-ea14-4ee9-9539-c66d2d90d0ae",
+        "metadata": "{\"title\":\"Lab Meeting Schedule Change\"}",
+        "id": "20e81a81-f882-430e-9cc8-5a3d409f34bd",
+        "timestamp": "2025-08-08T19:19:46.228Z"
+      }
+    ],
+    [
+      "10716e48-d380-4578-bdc1-920c84488e51",
+      {
+        "action": "CREATE",
+        "entityType": "ANNOUNCEMENT",
+        "entityId": "6cb63e17-427c-42b1-b871-5c007a5eff75",
+        "metadata": "{\"title\":\"Equipment Maintenance\"}",
+        "id": "10716e48-d380-4578-bdc1-920c84488e51",
+        "timestamp": "2025-08-08T19:19:46.229Z"
+      }
+    ],
+    [
+      "58b0f5da-2ed5-4be8-bdf5-2b31bcb58a8c",
+      {
+        "action": "CREATE",
+        "entityType": "MEETING",
+        "entityId": "0b9f9d84-f98b-4977-885e-9f1745237a14",
+        "metadata": "{\"title\":\"yoyo\"}",
+        "id": "58b0f5da-2ed5-4be8-bdf5-2b31bcb58a8c",
+        "timestamp": "2025-08-08T19:28:20.165Z"
+      }
+    ]
+  ]
+}
