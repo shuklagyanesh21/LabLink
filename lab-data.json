@@ -70,6 +70,21 @@
         "updatedAt": "2025-08-08T19:19:46.207Z",
         "deletedAt": null
       }
+    ],
+    [
+      "f9a6c3f7-5354-4a32-8824-2beaff5d939b",
+      {
+        "name": "Niharika",
+        "email": "logjojgjoj@nklnsgdkl.com",
+        "role": "NonAdmin",
+        "studentStatus": "PhD",
+        "isActive": true,
+        "internExpirationDate": null,
+        "id": "f9a6c3f7-5354-4a32-8824-2beaff5d939b",
+        "createdAt": "2025-08-13T11:16:33.428Z",
+        "updatedAt": "2025-08-13T11:16:33.428Z",
+        "deletedAt": null
+      }
     ]
   ],
   "meetings": [
@@ -150,6 +165,22 @@
         "id": "9c696fb6-469a-424b-a957-061b5f61d17c",
         "createdAt": "2025-08-08T19:32:01.341Z",
         "updatedAt": "2025-08-08T19:32:01.341Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "13670357-db8e-4ff9-a335-cba33dad0cc4",
+      {
+        "title": "jksdbbjgksae",
+        "presenterId": "86b6854a-9ae4-4f40-bd2c-14e97c5e536f",
+        "type": "Tutorial",
+        "date": "2025-08-13",
+        "startTime": "14:00",
+        "endTime": "15:00",
+        "description": "",
+        "id": "13670357-db8e-4ff9-a335-cba33dad0cc4",
+        "createdAt": "2025-08-13T11:14:40.865Z",
+        "updatedAt": "2025-08-13T11:14:40.865Z",
         "deletedAt": null
       }
     ]
@@ -360,6 +391,17 @@
         "metadata": "{\"title\":\"yoyo\"}",
         "id": "58b0f5da-2ed5-4be8-bdf5-2b31bcb58a8c",
         "timestamp": "2025-08-08T19:28:20.165Z"
+      }
+    ],
+    [
+      "288abd1f-9718-449d-9f05-d719f6746f7a",
+      {
+        "action": "CREATE",
+        "entityType": "MEETING",
+        "entityId": "13670357-db8e-4ff9-a335-cba33dad0cc4",
+        "metadata": "{\"title\":\"jksdbbjgksae\"}",
+        "id": "288abd1f-9718-449d-9f05-d719f6746f7a",
+        "timestamp": "2025-08-13T11:14:40.871Z"
       }
     ]
   ]

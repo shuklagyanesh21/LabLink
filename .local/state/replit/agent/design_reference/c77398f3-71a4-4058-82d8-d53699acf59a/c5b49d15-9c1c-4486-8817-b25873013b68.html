@@ -1,0 +1,707 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SharmaG_omics Lab - Lab Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lab-primary': '#3B82F6',
+                        'lab-secondary': '#10B981',
+                        'meeting-paper': '#F59E0B',
+                        'meeting-work': '#8B5CF6',
+                        'meeting-tutorial': '#06B6D4'
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- @COMPONENT: AppShell -->
+    <div class="min-h-screen">
+        <!-- Header -->
+        <!-- @COMPONENT: Header -->
+        <header class="bg-white shadow-sm border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <!-- Lab Branding -->
+                    <div class="flex items-center space-x-3">
+                        <div class="h-10 w-10 bg-lab-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-microscope text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold text-gray-900" data-bind="lab.name">SharmaG_omics Lab</h1>
+                            <div class="text-xs text-gray-500">Lab Management System</div>
+                        </div>
+                    </div>
+
+                    <!-- IST Clock & Admin Toggle -->
+                    <div class="flex items-center space-x-4">
+                        <!-- @FUNCTIONALITY: Real-time IST clock display -->
+                        <div class="text-sm text-gray-600">
+                            <i class="far fa-clock mr-1"></i>
+                            <span data-bind="currentTime.ist" data-mock="true">14:30 IST</span>
+                        </div>
+                        
+                        <!-- @STATE: adminMode:boolean = false -->
+                        <button 
+                            data-event="click:toggleAdminMode" 
+                            data-implementation="Toggle admin mode to show/hide management controls"
+                            class="inline-flex items-center px-3 py-1.5 border border-lab-primary text-lab-primary bg-white hover:bg-lab-primary hover:text-white rounded-md text-sm font-medium transition-colors"
+                        >
+                            <i class="fas fa-cog mr-1.5"></i>
+                            <span data-bind="adminMode ? 'Exit Admin' : 'Admin Mode'" data-mock="true">Admin Mode</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- @END_COMPONENT: Header -->
+
+        <div class="flex">
+            <!-- Sidebar Navigation -->
+            <!-- @COMPONENT: Sidebar -->
+            <nav class="bg-white w-64 shadow-sm h-[calc(100vh-4rem)] overflow-y-auto">
+                <div class="p-4">
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#dashboard" class="flex items-center px-3 py-2 text-gray-700 bg-lab-primary bg-opacity-10 text-lab-primary rounded-md hover:bg-lab-primary hover:text-white transition-colors">
+                                <i class="fas fa-tachometer-alt mr-3"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#calendar" class="flex items-center px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-calendar-alt mr-3"></i>
+                                Calendar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#members" class="flex items-center px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-users mr-3"></i>
+                                Members
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#rotation" class="flex items-center px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-sync-alt mr-3"></i>
+                                Rotation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#announcements" class="flex items-center px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-bullhorn mr-3"></i>
+                                Announcements
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#audit" class="flex items-center px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-history mr-3"></i>
+                                Audit Log
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Admin Actions (shown when admin mode is on) -->
+                    <div class="mt-8 p-3 bg-gray-50 rounded-lg" data-admin-only="true">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Quick Actions</h3>
+                        <div class="space-y-2">
+                            <button class="w-full text-left px-2 py-1 text-sm text-gray-600 hover:text-lab-primary transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Add Meeting
+                            </button>
+                            <button class="w-full text-left px-2 py-1 text-sm text-gray-600 hover:text-lab-primary transition-colors">
+                                <i class="fas fa-user-plus mr-2"></i>Add Member
+                            </button>
+                            <button class="w-full text-left px-2 py-1 text-sm text-gray-600 hover:text-lab-primary transition-colors">
+                                <i class="fas fa-download mr-2"></i>Export Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- @END_COMPONENT: Sidebar -->
+
+            <!-- Main Content -->
+            <main class="flex-1 p-6 bg-gray-50">
+                <!-- Dashboard View -->
+                <!-- @COMPONENT: Dashboard -->
+                <div id="dashboard-view">
+                    <!-- Page Header -->
+                    <div class="mb-6">
+                        <h2 class="text-3xl font-bold text-gray-900">Dashboard</h2>
+                        <p class="text-gray-600 mt-1">Lab overview and upcoming activities</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Upcoming Meetings -->
+                        <!-- @COMPONENT: UpcomingMeetings -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                                <div class="p-6 border-b border-gray-200">
+                                    <h3 class="text-lg font-semibold text-gray-900">Upcoming Meetings</h3>
+                                    <p class="text-sm text-gray-500">Next 2 weeks</p>
+                                </div>
+                                <div class="p-6 space-y-4">
+                                    <!-- @MAP: upcomingMeetings.map(meeting => ( -->
+                                    <div class="flex items-center p-4 bg-gray-50 rounded-lg" data-mock="true">
+                                        <div class="w-3 h-3 bg-meeting-paper rounded-full mr-4"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-medium text-gray-900" data-bind="meeting.title">Machine Learning in Genomics</h4>
+                                            <div class="text-sm text-gray-600">
+                                                <span data-bind="meeting.presenter.name">Dr. Rahul Sharma</span> • 
+                                                <span data-bind="meeting.date">Dec 15, 2024</span> • 
+                                                <span data-bind="meeting.time">14:00 - 15:00 IST</span>
+                                            </div>
+                                            <span class="inline-flex px-2 py-1 text-xs font-medium bg-meeting-paper bg-opacity-20 text-meeting-paper rounded-full mt-1">
+                                                Paper Presentation
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center p-4 bg-gray-50 rounded-lg" data-mock="true">
+                                        <div class="w-3 h-3 bg-meeting-work rounded-full mr-4"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-medium text-gray-900" data-bind="meeting.title">CRISPR Progress Update</h4>
+                                            <div class="text-sm text-gray-600">
+                                                <span data-bind="meeting.presenter.name">Priya Patel</span> • 
+                                                <span data-bind="meeting.date">Dec 17, 2024</span> • 
+                                                <span data-bind="meeting.time">10:30 - 11:30 IST</span>
+                                            </div>
+                                            <span class="inline-flex px-2 py-1 text-xs font-medium bg-meeting-work bg-opacity-20 text-meeting-work rounded-full mt-1">
+                                                Work Presentation
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center p-4 bg-gray-50 rounded-lg" data-mock="true">
+                                        <div class="w-3 h-3 bg-meeting-tutorial rounded-full mr-4"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-medium text-gray-900" data-bind="meeting.title">RNA-seq Analysis Tutorial</h4>
+                                            <div class="text-sm text-gray-600">
+                                                <span data-bind="meeting.presenter.name">Amit Kumar</span> • 
+                                                <span data-bind="meeting.date">Dec 20, 2024</span> • 
+                                                <span data-bind="meeting.time">15:00 - 16:00 IST</span>
+                                            </div>
+                                            <span class="inline-flex px-2 py-1 text-xs font-medium bg-meeting-tutorial bg-opacity-20 text-meeting-tutorial rounded-full mt-1">
+                                                Tutorial
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- @END_MAP )) -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- @END_COMPONENT: UpcomingMeetings -->
+
+                        <!-- Right Column -->
+                        <div class="space-y-6">
+                            <!-- Rotation Widget -->
+                            <!-- @COMPONENT: RotationWidget -->
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                                <div class="p-6 border-b border-gray-200">
+                                    <h3 class="text-lg font-semibold text-gray-900">Presentation Rotation</h3>
+                                </div>
+                                <div class="p-6">
+                                    <div class="mb-4">
+                                        <h4 class="text-sm font-medium text-gray-700 mb-2">Up Next</h4>
+                                        <div class="p-3 bg-lab-secondary bg-opacity-10 rounded-lg" data-mock="true">
+                                            <div class="font-medium text-gray-900" data-bind="nextPresenter.name">Sarah Chen</div>
+                                            <div class="text-sm text-gray-600" data-bind="nextPresenter.status">PhD Student</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-700 mb-2">Queue</h4>
+                                        <div class="space-y-2">
+                                            <!-- @MAP: rotationQueue.map((member, index) => ( -->
+                                            <div class="flex items-center justify-between" data-mock="true">
+                                                <div>
+                                                    <div class="text-sm font-medium" data-bind="member.name">Vikram Singh</div>
+                                                    <div class="text-xs text-gray-500" data-bind="member.status">MTech Student</div>
+                                                </div>
+                                                <span class="text-xs text-gray-400" data-bind="index + 2">2</span>
+                                            </div>
+                                            <div class="flex items-center justify-between" data-mock="true">
+                                                <div>
+                                                    <div class="text-sm font-medium" data-bind="member.name">Neha Gupta</div>
+                                                    <div class="text-xs text-gray-500" data-bind="member.status">BTech Student</div>
+                                                </div>
+                                                <span class="text-xs text-gray-400" data-bind="index + 2">3</span>
+                                            </div>
+                                            <!-- @END_MAP )) -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_COMPONENT: RotationWidget -->
+
+                            <!-- Announcements -->
+                            <!-- @COMPONENT: AnnouncementsWidget -->
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                                <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-gray-900">Announcements</h3>
+                                    <button 
+                                        data-admin-only="true"
+                                        data-event="click:createAnnouncement"
+                                        class="text-lab-primary hover:text-lab-primary text-sm font-medium"
+                                    >
+                                        <i class="fas fa-plus mr-1"></i>Add
+                                    </button>
+                                </div>
+                                <div class="p-6 space-y-4">
+                                    <!-- @MAP: announcements.filter(a => !a.expired).map(announcement => ( -->
+                                    <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg" data-mock="true">
+                                        <h4 class="font-medium text-gray-900" data-bind="announcement.title">Lab Meeting Schedule Change</h4>
+                                        <p class="text-sm text-gray-600 mt-1" data-bind="announcement.body">Weekly lab meetings will be moved to Fridays starting next week.</p>
+                                        <div class="text-xs text-gray-500 mt-2" data-bind="announcement.createdAt">Posted 2 days ago</div>
+                                    </div>
+
+                                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg" data-mock="true">
+                                        <h4 class="font-medium text-gray-900" data-bind="announcement.title">Equipment Maintenance</h4>
+                                        <p class="text-sm text-gray-600 mt-1" data-bind="announcement.body">The PCR machine will be under maintenance from Dec 18-20.</p>
+                                        <div class="text-xs text-gray-500 mt-2" data-bind="announcement.createdAt">Posted 1 week ago</div>
+                                    </div>
+                                    <!-- @END_MAP )) -->
+                                </div>
+                            </div>
+                            <!-- @END_COMPONENT: AnnouncementsWidget -->
+
+                            <!-- Admin Stats (visible in admin mode) -->
+                            <!-- @COMPONENT: AdminStats -->
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200" data-admin-only="true">
+                                <div class="p-6 border-b border-gray-200">
+                                    <h3 class="text-lg font-semibold text-gray-900">Lab Statistics</h3>
+                                </div>
+                                <div class="p-6 space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Active Members</span>
+                                        <span class="font-semibold" data-bind="stats.activeMembers" data-mock="true">12</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">PhD Students</span>
+                                        <span class="font-semibold" data-bind="stats.phdStudents" data-mock="true">4</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Interns</span>
+                                        <span class="font-semibold" data-bind="stats.interns" data-mock="true">3</span>
+                                    </div>
+                                    <div class="pt-2 border-t border-gray-200">
+                                        <div class="flex justify-between items-center text-amber-600">
+                                            <span class="text-sm">Expiring Soon</span>
+                                            <span class="font-semibold" data-bind="stats.expiringSoon" data-mock="true">1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_COMPONENT: AdminStats -->
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: Dashboard -->
+
+                <!-- Calendar View (initially hidden) -->
+                <!-- @COMPONENT: CalendarView -->
+                <div id="calendar-view" class="hidden">
+                    <div class="mb-6 flex justify-between items-center">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900">Calendar</h2>
+                            <p class="text-gray-600 mt-1">Lab meeting schedule</p>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <!-- Calendar Controls -->
+                            <div class="flex rounded-lg border border-gray-300 overflow-hidden">
+                                <button class="px-3 py-2 text-sm bg-lab-primary text-white">Week</button>
+                                <button class="px-3 py-2 text-sm bg-white text-gray-700 hover:bg-gray-50">Month</button>
+                            </div>
+                            
+                            <button 
+                                data-admin-only="true"
+                                data-event="click:createMeeting"
+                                class="inline-flex items-center px-4 py-2 bg-lab-primary text-white rounded-lg hover:bg-blue-600 transition-colors"
+                            >
+                                <i class="fas fa-plus mr-2"></i>Add Meeting
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Meeting Type Legend -->
+                    <div class="mb-6 p-4 bg-white rounded-lg border border-gray-200">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3">Meeting Types</h3>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-meeting-paper rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">Paper Presentation</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-meeting-work rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">Work Presentation</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-meeting-tutorial rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">Tutorial</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- @FUNCTIONALITY: FullCalendar integration with drag-and-drop, color coding by meeting type -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div id="calendar-container" class="min-h-96">
+                            <!-- Weekly Calendar Grid Mockup -->
+                            <div class="grid grid-cols-8 gap-px bg-gray-200 rounded-lg overflow-hidden">
+                                <!-- Time Column -->
+                                <div class="bg-gray-50">
+                                    <div class="h-12 border-b border-gray-200"></div>
+                                    <div class="space-y-px">
+                                        <div class="h-16 bg-white flex items-center justify-center text-xs text-gray-500">09:00</div>
+                                        <div class="h-16 bg-white flex items-center justify-center text-xs text-gray-500">10:00</div>
+                                        <div class="h-16 bg-white flex items-center justify-center text-xs text-gray-500">11:00</div>
+                                        <div class="h-16 bg-white flex items-center justify-center text-xs text-gray-500">12:00</div>
+                                        <div class="h-16 bg-white flex items-center justify-center text-xs text-gray-500">13:00</div>
+                                        <div class="h-16 bg-white flex items-center justify-center text-xs text-gray-500">14:00</div>
+                                        <div class="h-16 bg-white flex items-center justify-center text-xs text-gray-500">15:00</div>
+                                        <div class="h-16 bg-white flex items-center justify-center text-xs text-gray-500">16:00</div>
+                                    </div>
+                                </div>
+
+                                <!-- Day Columns -->
+                                <div class="bg-white">
+                                    <div class="h-12 border-b border-gray-200 flex items-center justify-center text-sm font-medium">
+                                        Mon<br><span class="text-xs text-gray-500">Dec 16</span>
+                                    </div>
+                                    <div class="space-y-px">
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100 relative">
+                                            <div class="absolute inset-x-1 inset-y-1 bg-meeting-work bg-opacity-20 border-l-4 border-meeting-work rounded p-1">
+                                                <div class="text-xs font-medium text-meeting-work">Research Update</div>
+                                                <div class="text-xs text-gray-600">Priya P.</div>
+                                            </div>
+                                        </div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white">
+                                    <div class="h-12 border-b border-gray-200 flex items-center justify-center text-sm font-medium">
+                                        Tue<br><span class="text-xs text-gray-500">Dec 17</span>
+                                    </div>
+                                    <div class="space-y-px">
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100 relative">
+                                            <div class="absolute inset-x-1 inset-y-1 bg-meeting-paper bg-opacity-20 border-l-4 border-meeting-paper rounded p-1">
+                                                <div class="text-xs font-medium text-meeting-paper">ML in Genomics</div>
+                                                <div class="text-xs text-gray-600">Rahul S.</div>
+                                            </div>
+                                        </div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Additional day columns... -->
+                                <div class="bg-white">
+                                    <div class="h-12 border-b border-gray-200 flex items-center justify-center text-sm font-medium">
+                                        Wed<br><span class="text-xs text-gray-500">Dec 18</span>
+                                    </div>
+                                    <div class="space-y-px">
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white">
+                                    <div class="h-12 border-b border-gray-200 flex items-center justify-center text-sm font-medium">
+                                        Thu<br><span class="text-xs text-gray-500">Dec 19</span>
+                                    </div>
+                                    <div class="space-y-px">
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100 relative">
+                                            <div class="absolute inset-x-1 inset-y-1 bg-meeting-tutorial bg-opacity-20 border-l-4 border-meeting-tutorial rounded p-1">
+                                                <div class="text-xs font-medium text-meeting-tutorial">RNA-seq Tutorial</div>
+                                                <div class="text-xs text-gray-600">Amit K.</div>
+                                            </div>
+                                        </div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white">
+                                    <div class="h-12 border-b border-gray-200 flex items-center justify-center text-sm font-medium">
+                                        Fri<br><span class="text-xs text-gray-500">Dec 20</span>
+                                    </div>
+                                    <div class="space-y-px">
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white">
+                                    <div class="h-12 border-b border-gray-200 flex items-center justify-center text-sm font-medium">
+                                        Sat<br><span class="text-xs text-gray-500">Dec 21</span>
+                                    </div>
+                                    <div class="space-y-px">
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white">
+                                    <div class="h-12 border-b border-gray-200 flex items-center justify-center text-sm font-medium">
+                                        Sun<br><span class="text-xs text-gray-500">Dec 22</span>
+                                    </div>
+                                    <div class="space-y-px">
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                        <div class="h-16 bg-white border-b border-gray-100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: CalendarView -->
+            </main>
+        </div>
+
+        <!-- Meeting Creation Modal (shown when admin creates meeting) -->
+        <!-- @COMPONENT: MeetingModal -->
+        <div id="meeting-modal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 hidden" data-admin-only="true">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900">Create Meeting</h3>
+                </div>
+                
+                <form class="p-6 space-y-4" data-event="submit:createMeeting">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                        <input 
+                            type="text" 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lab-primary focus:border-transparent"
+                            placeholder="Meeting title"
+                            data-bind="form.title"
+                        />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Presenter</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lab-primary focus:border-transparent" data-bind="form.presenterId">
+                            <option value="">Select presenter</option>
+                            <option value="1" data-mock="true">Dr. Rahul Sharma</option>
+                            <option value="2" data-mock="true">Priya Patel</option>
+                            <option value="3" data-mock="true">Amit Kumar</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lab-primary focus:border-transparent" data-bind="form.type">
+                            <option value="">Select type</option>
+                            <option value="PaperPresentation">Paper Presentation</option>
+                            <option value="WorkPresentation">Work Presentation</option>
+                            <option value="Tutorial">Tutorial</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                            <input 
+                                type="date" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lab-primary focus:border-transparent"
+                                data-bind="form.date"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Start Time (IST)</label>
+                            <input 
+                                type="time" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lab-primary focus:border-transparent"
+                                data-bind="form.startTime"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Description (Optional)</label>
+                        <textarea 
+                            rows="3"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lab-primary focus:border-transparent"
+                            placeholder="Meeting description"
+                            data-bind="form.description"
+                        ></textarea>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button 
+                            type="button"
+                            data-event="click:closeMeetingModal"
+                            class="px-4 py-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <button 
+                            type="submit"
+                            class="px-4 py-2 bg-lab-primary text-white rounded-md hover:bg-blue-600 transition-colors"
+                        >
+                            Create Meeting
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: MeetingModal -->
+
+        <!-- Toast Notification (for user feedback) -->
+        <!-- @COMPONENT: Toast -->
+        <div id="toast-container" class="fixed bottom-4 right-4 z-50" data-implementation="Show/hide based on actions">
+            <div class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg hidden" id="success-toast">
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span data-bind="toast.message">Action completed successfully</span>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: Toast -->
+    </div>
+    <!-- @END_COMPONENT: AppShell -->
+
+    <script>
+        // TODO: Implement React application with proper state management, FullCalendar integration, and admin mode toggle
+        // TODO: Add drag-and-drop functionality for meeting rescheduling
+        // TODO: Implement conflict detection for overlapping meetings
+        // TODO: Add real-time IST clock display
+        // TODO: Implement data persistence (localStorage or JSON file)
+        // TODO: Add form validation and error handling
+        // TODO: Implement soft delete functionality with undo capability
+
+        (function() {
+            // Basic navigation demo
+            const navLinks = document.querySelectorAll('nav a');
+            const views = {
+                '#dashboard': document.getElementById('dashboard-view'),
+                '#calendar': document.getElementById('calendar-view')
+            };
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = link.getAttribute('href');
+                    
+                    // Hide all views
+                    Object.values(views).forEach(view => {
+                        if (view) view.classList.add('hidden');
+                    });
+                    
+                    // Show target view
+                    if (views[target]) {
+                        views[target].classList.remove('hidden');
+                    }
+                    
+                    // Update active nav
+                    navLinks.forEach(l => l.classList.remove('bg-lab-primary', 'bg-opacity-10', 'text-lab-primary'));
+                    navLinks.forEach(l => l.classList.add('text-gray-700'));
+                    link.classList.add('bg-lab-primary', 'bg-opacity-10', 'text-lab-primary');
+                    link.classList.remove('text-gray-700');
+                });
+            });
+
+            // Admin mode toggle demo
+            const adminToggle = document.querySelector('[data-event="click:toggleAdminMode"]');
+            const adminElements = document.querySelectorAll('[data-admin-only="true"]');
+            let adminMode = false;
+
+            adminToggle?.addEventListener('click', () => {
+                adminMode = !adminMode;
+                adminToggle.innerHTML = adminMode ? 
+                    '<i class="fas fa-cog mr-1.5"></i>Exit Admin' : 
+                    '<i class="fas fa-cog mr-1.5"></i>Admin Mode';
+                
+                adminElements.forEach(el => {
+                    el.style.display = adminMode ? 'block' : 'none';
+                });
+            });
+
+            // Initialize admin elements as hidden
+            adminElements.forEach(el => {
+                el.style.display = 'none';
+            });
+
+            // Modal demo
+            const meetingModal = document.getElementById('meeting-modal');
+            const createMeetingBtns = document.querySelectorAll('[data-event="click:createMeeting"]');
+            const closeMeetingBtn = document.querySelector('[data-event="click:closeMeetingModal"]');
+
+            createMeetingBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    meetingModal?.classList.remove('hidden');
+                });
+            });
+
+            closeMeetingBtn?.addEventListener('click', () => {
+                meetingModal?.classList.add('hidden');
+            });
+
+            // Update IST time every second
+            function updateISTTime() {
+                const now = new Date();
+                const ist = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+                const timeString = ist.toLocaleTimeString('en-IN', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                }) + ' IST';
+                
+                const timeDisplay = document.querySelector('[data-bind="currentTime.ist"]');
+                if (timeDisplay) {
+                    timeDisplay.textContent = timeString;
+                }
+            }
+
+            updateISTTime();
+            setInterval(updateISTTime, 1000);
+        })();
+    </script>
+</body>
+</html>
