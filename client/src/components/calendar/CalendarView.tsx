@@ -60,7 +60,14 @@ export default function CalendarView() {
   };
 
   const timeSlots = [
-    "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"
+    "09:00", "09:15", "09:30", "09:45",
+    "10:00", "10:15", "10:30", "10:45",
+    "11:00", "11:15", "11:30", "11:45",
+    "12:00", "12:15", "12:30", "12:45",
+    "13:00", "13:15", "13:30", "13:45",
+    "14:00", "14:15", "14:30", "14:45",
+    "15:00", "15:15", "15:30", "15:45",
+    "16:00", "16:15", "16:30", "16:45"
   ];
 
   const weekDays = getCurrentWeekDays();
@@ -70,9 +77,20 @@ export default function CalendarView() {
     const dateStr = format(date, 'yyyy-MM-dd');
     return meetings.filter(meeting => {
       if (meeting.date !== dateStr) return false;
-      const meetingStartHour = parseInt(meeting.startTime.split(':')[0]);
-      const slotHour = parseInt(timeSlot.split(':')[0]);
-      return meetingStartHour === slotHour;
+      
+      // Parse meeting start and end times
+      const [meetingStartHour, meetingStartMin] = meeting.startTime.split(':').map(Number);
+      const [meetingEndHour, meetingEndMin] = meeting.endTime.split(':').map(Number);
+      const [slotHour, slotMin] = timeSlot.split(':').map(Number);
+      
+      // Convert times to minutes for easier comparison
+      const meetingStartMinutes = meetingStartHour * 60 + meetingStartMin;
+      const meetingEndMinutes = meetingEndHour * 60 + meetingEndMin;
+      const slotMinutes = slotHour * 60 + slotMin;
+      const slotEndMinutes = slotMinutes + 15; // Each slot represents 15 minutes
+      
+      // Check if meeting overlaps with this time slot
+      return (meetingStartMinutes < slotEndMinutes && meetingEndMinutes > slotMinutes);
     });
   };
 
@@ -172,9 +190,11 @@ export default function CalendarView() {
             {/* Time slots and content */}
             {timeSlots.map((timeSlot) => (
               <React.Fragment key={`timeslot-${timeSlot}`}>
-                {/* Time label */}
-                <div className="calendar-time-slot flex items-center justify-center text-xs text-gray-500">
-                  {timeSlot}
+                {/* Time label - only show for hour slots */}
+                <div className={`calendar-time-slot flex items-center justify-center text-xs ${
+                  timeSlot.endsWith(':00') ? 'text-gray-700 font-medium border-t border-gray-300' : ''
+                }`}>
+                  {timeSlot.endsWith(':00') ? timeSlot : ''}
                 </div>
 
                 {/* Day columns */}
@@ -185,7 +205,9 @@ export default function CalendarView() {
                   return (
                     <div 
                       key={`${day.toISOString()}-${timeSlot}`}
-                      className="calendar-time-slot relative border-b border-gray-100 cursor-pointer hover:bg-gray-50"
+                      className={`calendar-time-slot relative cursor-pointer hover:bg-gray-50 ${
+                        timeSlot.endsWith(':00') ? 'border-t border-gray-300' : ''
+                      }`}
                       onClick={() => handleTimeSlotClick(dateStr, timeSlot)}
                       data-testid={`time-slot-${dateStr}-${timeSlot}`}
                     >
@@ -193,21 +215,45 @@ export default function CalendarView() {
                         const presenter = membersMap.get(meeting.presenterId);
                         const colors = getMeetingTypeColor(meeting.type);
                         
+                        // Calculate meeting position and height based on start time and duration
+                        const [meetingStartHour, meetingStartMin] = meeting.startTime.split(':').map(Number);
+                        const [meetingEndHour, meetingEndMin] = meeting.endTime.split(':').map(Number);
+                        const [slotHour, slotMin] = timeSlot.split(':').map(Number);
+                        
+                        const meetingStartMinutes = meetingStartHour * 60 + meetingStartMin;
+                        const meetingEndMinutes = meetingEndHour * 60 + meetingEndMin;
+                        const slotMinutes = slotHour * 60 + slotMin;
+                        
+                        // Only show the meeting in the first slot it appears in
+                        const isFirstSlot = meetingStartMinutes >= slotMinutes && meetingStartMinutes < slotMinutes + 15;
+                        
+                        if (!isFirstSlot) return null;
+                        
+                        // Calculate the height based on meeting duration
+                        const durationMinutes = meetingEndMinutes - meetingStartMinutes;
+                        const heightInSlots = Math.ceil(durationMinutes / 15);
+                        const meetingHeight = `${heightInSlots * 1.5}rem`;
+                        
                         return (
                           <div
                             key={meeting.id}
-                            className="calendar-event"
+                            className="absolute left-1 right-1 rounded border-l-4 p-1 text-xs z-10"
                             style={{
                               backgroundColor: colors.background,
                               borderLeftColor: colors.border,
-                              color: colors.text
+                              color: colors.text,
+                              height: meetingHeight,
+                              top: '0.125rem'
                             }}
                             data-testid={`calendar-meeting-${meeting.id}`}
                           >
-                            <div className="font-medium text-xs truncate">
+                            <div className="font-medium truncate">
                               {meeting.title}
                             </div>
-                            <div className="text-xs opacity-75 truncate">
+                            <div className="opacity-75 truncate">
+                              {formatDisplayTime(meeting.startTime)} - {formatDisplayTime(meeting.endTime)}
+                            </div>
+                            <div className="opacity-75 truncate">
                               {presenter?.name || 'Unknown'}
                             </div>
                           </div>

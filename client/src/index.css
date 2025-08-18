@@ -148,16 +148,15 @@
 .calendar-grid {
   display: grid;
   grid-template-columns: 80px repeat(7, 1fr);
-  gap: 1px;
-  background-color: hsl(210 5.2632% 89%);
+  gap: 0;
+  background-color: white;
   border-radius: 0.5rem;
   overflow: hidden;
 }
 
 .calendar-time-slot {
-  height: 4rem;
+  height: 1.5rem;
   background-color: white;
-  border-bottom: 1px solid hsl(210 5.2632% 92%);
 }
 
 .calendar-event {

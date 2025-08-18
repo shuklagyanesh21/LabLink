@@ -85,6 +85,93 @@
         "updatedAt": "2025-08-13T11:16:33.428Z",
         "deletedAt": null
       }
+    ],
+    [
+      "323c7a3d-695a-4f3d-b1e9-ce6093d869f9",
+      {
+        "name": "Test User",
+        "email": "test@example.com",
+        "role": "NonAdmin",
+        "studentStatus": "PhD",
+        "isActive": true,
+        "id": "323c7a3d-695a-4f3d-b1e9-ce6093d869f9",
+        "createdAt": "2025-08-18T06:03:32.366Z",
+        "updatedAt": "2025-08-18T06:03:32.366Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "fad5eabe-02ee-4e2d-b0a0-d68157f46d47",
+      {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "role": "NonAdmin",
+        "studentStatus": "PhD",
+        "isActive": true,
+        "id": "fad5eabe-02ee-4e2d-b0a0-d68157f46d47",
+        "createdAt": "2025-08-18T06:21:05.055Z",
+        "updatedAt": "2025-08-18T06:21:05.055Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "427f80f8-5a40-40d5-9c97-c88bf7ee076b",
+      {
+        "name": "Debug Test",
+        "email": "debug@example.com",
+        "role": "NonAdmin",
+        "studentStatus": "PhD",
+        "isActive": true,
+        "id": "427f80f8-5a40-40d5-9c97-c88bf7ee076b",
+        "createdAt": "2025-08-18T06:21:44.356Z",
+        "updatedAt": "2025-08-18T06:21:44.356Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "920cf255-2527-43b4-8f25-925a810f9e42",
+      {
+        "name": "gykm koy",
+        "email": "fykm@err.buj",
+        "role": "NonAdmin",
+        "studentStatus": "BTech",
+        "isActive": true,
+        "internExpirationDate": null,
+        "id": "920cf255-2527-43b4-8f25-925a810f9e42",
+        "createdAt": "2025-08-18T06:21:53.014Z",
+        "updatedAt": "2025-08-18T06:21:53.014Z",
+        "deletedAt": "2025-08-18T11:32:38.259Z"
+      }
+    ],
+    [
+      "9ea1b6df-fc95-43de-aad2-5e234e0d1be6",
+      {
+        "name": "axc",
+        "email": "vgs@fgb.chu",
+        "role": "NonAdmin",
+        "studentStatus": "BTech",
+        "isActive": true,
+        "internExpirationDate": null,
+        "id": "9ea1b6df-fc95-43de-aad2-5e234e0d1be6",
+        "createdAt": "2025-08-18T06:22:03.582Z",
+        "updatedAt": "2025-08-18T06:22:03.582Z",
+        "deletedAt": "2025-08-18T11:32:31.346Z"
+      }
+    ],
+    [
+      "08928bcf-e4e6-4360-94ca-05e517bd89e0",
+      {
+        "name": "4wtgr",
+        "email": "",
+        "role": "NonAdmin",
+        "studentStatus": "BTech",
+        "isActive": true,
+        "internExpirationDate": null,
+        "id": "08928bcf-e4e6-4360-94ca-05e517bd89e0",
+        "createdAt": "2025-08-18T11:32:58.201Z",
+        "updatedAt": "2025-08-18T11:32:58.201Z",
+        "deletedAt": null
+      }
     ]
   ],
   "meetings": [
@@ -183,6 +270,70 @@
         "updatedAt": "2025-08-13T11:14:40.865Z",
         "deletedAt": null
       }
+    ],
+    [
+      "0311d281-5e24-427f-8cbf-a5d56c516e45",
+      {
+        "title": "",
+        "presenterId": "",
+        "type": "PaperPresentation",
+        "date": "2025-08-18",
+        "startTime": "14:30",
+        "endTime": "15:00",
+        "description": "",
+        "id": "0311d281-5e24-427f-8cbf-a5d56c516e45",
+        "createdAt": "2025-08-18T11:33:56.013Z",
+        "updatedAt": "2025-08-18T11:33:56.013Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "fc0de77d-4561-4362-b8e5-8f40a18e3bc6",
+      {
+        "title": "",
+        "presenterId": "",
+        "type": "PaperPresentation",
+        "date": "2025-08-19",
+        "startTime": "14:30",
+        "endTime": "15:30",
+        "description": "",
+        "id": "fc0de77d-4561-4362-b8e5-8f40a18e3bc6",
+        "createdAt": "2025-08-18T11:34:55.770Z",
+        "updatedAt": "2025-08-18T11:34:55.770Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "72f212d0-1f32-4218-95eb-46520d13b4ea",
+      {
+        "title": "Test Meeting with Minutes",
+        "presenterId": "2157adff-87ab-46b5-9b0d-64679281cd59",
+        "type": "PaperPresentation",
+        "date": "2025-08-20",
+        "startTime": "14:30",
+        "endTime": "15:45",
+        "description": "Testing minutes preservation",
+        "id": "72f212d0-1f32-4218-95eb-46520d13b4ea",
+        "createdAt": "2025-08-18T11:38:59.888Z",
+        "updatedAt": "2025-08-18T11:38:59.888Z",
+        "deletedAt": null
+      }
+    ],
+    [
+      "f7113dbd-4a2d-47db-8fff-86f322e336fd",
+      {
+        "title": "cmg",
+        "presenterId": "68d85f8b-20a7-4eee-8c12-8b5a6e96070d",
+        "type": "PaperPresentation",
+        "date": "2025-08-21",
+        "startTime": "14:45",
+        "endTime": "15:00",
+        "description": "",
+        "id": "f7113dbd-4a2d-47db-8fff-86f322e336fd",
+        "createdAt": "2025-08-18T11:41:10.114Z",
+        "updatedAt": "2025-08-18T11:41:10.114Z",
+        "deletedAt": null
+      }
     ]
   ],
   "rotation": [
@@ -211,6 +362,46 @@
         "orderIndex": 3,
         "active": true,
         "id": "3b500bab-d133-4279-9a4a-caad5c314e53"
+      }
+    ],
+    [
+      "d7084f79-6665-4de7-9b41-e73e55c424f1",
+      {
+        "id": "d7084f79-6665-4de7-9b41-e73e55c424f1",
+        "memberId": "323c7a3d-695a-4f3d-b1e9-ce6093d869f9",
+        "orderIndex": 4,
+        "active": true,
+        "lastPresentedAt": null
+      }
+    ],
+    [
+      "bc70fd8e-e02a-4c06-a9af-045d9dcd7539",
+      {
+        "id": "bc70fd8e-e02a-4c06-a9af-045d9dcd7539",
+        "memberId": "fad5eabe-02ee-4e2d-b0a0-d68157f46d47",
+        "orderIndex": 6,
+        "active": true,
+        "lastPresentedAt": null
+      }
+    ],
+    [
+      "414f7fc4-9a70-4376-ba5d-df4c4635cae4",
+      {
+        "id": "414f7fc4-9a70-4376-ba5d-df4c4635cae4",
+        "memberId": "427f80f8-5a40-40d5-9c97-c88bf7ee076b",
+        "orderIndex": 7,
+        "active": true,
+        "lastPresentedAt": null
+      }
+    ],
+    [
+      "e03b8d8d-fa35-415a-9dcd-b19d84276f8a",
+      {
+        "id": "e03b8d8d-fa35-415a-9dcd-b19d84276f8a",
+        "memberId": "08928bcf-e4e6-4360-94ca-05e517bd89e0",
+        "orderIndex": 5,
+        "active": true,
+        "lastPresentedAt": null
       }
     ]
   ],
@@ -402,6 +593,325 @@
         "metadata": "{\"title\":\"jksdbbjgksae\"}",
         "id": "288abd1f-9718-449d-9f05-d719f6746f7a",
         "timestamp": "2025-08-13T11:14:40.871Z"
+      }
+    ],
+    [
+      "bede0738-1336-4b7c-8aa9-02afea42757a",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "d7084f79-6665-4de7-9b41-e73e55c424f1",
+        "metadata": "{\"memberId\":\"323c7a3d-695a-4f3d-b1e9-ce6093d869f9\",\"autoAdded\":true}",
+        "id": "bede0738-1336-4b7c-8aa9-02afea42757a",
+        "timestamp": "2025-08-18T06:03:32.367Z"
+      }
+    ],
+    [
+      "ff0dafa7-7cfb-408d-932c-6841cbf5cb66",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "bc70fd8e-e02a-4c06-a9af-045d9dcd7539",
+        "metadata": "{\"memberId\":\"fad5eabe-02ee-4e2d-b0a0-d68157f46d47\",\"autoAdded\":true}",
+        "id": "ff0dafa7-7cfb-408d-932c-6841cbf5cb66",
+        "timestamp": "2025-08-18T06:21:05.055Z"
+      }
+    ],
+    [
+      "f8f78a27-9290-4e94-aba2-a6ea1c3bedf0",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "414f7fc4-9a70-4376-ba5d-df4c4635cae4",
+        "metadata": "{\"memberId\":\"427f80f8-5a40-40d5-9c97-c88bf7ee076b\",\"autoAdded\":true}",
+        "id": "f8f78a27-9290-4e94-aba2-a6ea1c3bedf0",
+        "timestamp": "2025-08-18T06:21:44.358Z"
+      }
+    ],
+    [
+      "81bb55c8-5baa-4417-809f-f22266af1d5a",
+      {
+        "action": "CREATE",
+        "entityType": "MEMBER",
+        "entityId": "427f80f8-5a40-40d5-9c97-c88bf7ee076b",
+        "metadata": "{\"name\":\"Debug Test\"}",
+        "id": "81bb55c8-5baa-4417-809f-f22266af1d5a",
+        "timestamp": "2025-08-18T06:21:44.360Z"
+      }
+    ],
+    [
+      "e50efb3e-f71a-46b1-b335-36166bee2e56",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "6d5458bf-c7c9-4028-a2a0-1cc6267aa60d",
+        "metadata": "{\"memberId\":\"920cf255-2527-43b4-8f25-925a810f9e42\",\"autoAdded\":true}",
+        "id": "e50efb3e-f71a-46b1-b335-36166bee2e56",
+        "timestamp": "2025-08-18T06:21:53.015Z"
+      }
+    ],
+    [
+      "39c26dec-32cd-4cfc-80a0-a0a813086367",
+      {
+        "action": "CREATE",
+        "entityType": "MEMBER",
+        "entityId": "920cf255-2527-43b4-8f25-925a810f9e42",
+        "metadata": "{\"name\":\"gykm koy\"}",
+        "id": "39c26dec-32cd-4cfc-80a0-a0a813086367",
+        "timestamp": "2025-08-18T06:21:53.016Z"
+      }
+    ],
+    [
+      "49d46953-914f-4fa3-ad78-b3b1b1f2fb6c",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "545a5cfc-3806-44ba-9409-e9b4a42c44cc",
+        "metadata": "{\"memberId\":\"9ea1b6df-fc95-43de-aad2-5e234e0d1be6\",\"autoAdded\":true}",
+        "id": "49d46953-914f-4fa3-ad78-b3b1b1f2fb6c",
+        "timestamp": "2025-08-18T06:22:03.582Z"
+      }
+    ],
+    [
+      "1227ade3-c05a-4277-bee6-2d9443677244",
+      {
+        "action": "DELETE",
+        "entityType": "ROTATION",
+        "entityId": "545a5cfc-3806-44ba-9409-e9b4a42c44cc",
+        "metadata": "{\"memberId\":\"9ea1b6df-fc95-43de-aad2-5e234e0d1be6\",\"autoRemoved\":true}",
+        "id": "1227ade3-c05a-4277-bee6-2d9443677244",
+        "timestamp": "2025-08-18T11:32:31.347Z"
+      }
+    ],
+    [
+      "ae3b666a-8bc7-4604-a57d-dadd24066259",
+      {
+        "action": "DELETE",
+        "entityType": "MEMBER",
+        "entityId": "9ea1b6df-fc95-43de-aad2-5e234e0d1be6",
+        "metadata": "{\"name\":\"axc\"}",
+        "id": "ae3b666a-8bc7-4604-a57d-dadd24066259",
+        "timestamp": "2025-08-18T11:32:31.354Z"
+      }
+    ],
+    [
+      "2cf41e38-ef3e-4a50-8396-f6c6298b2c69",
+      {
+        "action": "DELETE",
+        "entityType": "ROTATION",
+        "entityId": "6d5458bf-c7c9-4028-a2a0-1cc6267aa60d",
+        "metadata": "{\"memberId\":\"920cf255-2527-43b4-8f25-925a810f9e42\",\"autoRemoved\":true}",
+        "id": "2cf41e38-ef3e-4a50-8396-f6c6298b2c69",
+        "timestamp": "2025-08-18T11:32:38.259Z"
+      }
+    ],
+    [
+      "540ae3a9-e435-462e-828e-1362b01c0184",
+      {
+        "action": "DELETE",
+        "entityType": "MEMBER",
+        "entityId": "920cf255-2527-43b4-8f25-925a810f9e42",
+        "metadata": "{\"name\":\"gykm koy\"}",
+        "id": "540ae3a9-e435-462e-828e-1362b01c0184",
+        "timestamp": "2025-08-18T11:32:38.260Z"
+      }
+    ],
+    [
+      "3ca4f522-6521-4dd6-a1bc-c3535d71ebd3",
+      {
+        "action": "CREATE",
+        "entityType": "ROTATION",
+        "entityId": "e03b8d8d-fa35-415a-9dcd-b19d84276f8a",
+        "metadata": "{\"memberId\":\"08928bcf-e4e6-4360-94ca-05e517bd89e0\",\"autoAdded\":true}",
+        "id": "3ca4f522-6521-4dd6-a1bc-c3535d71ebd3",
+        "timestamp": "2025-08-18T11:32:58.201Z"
+      }
+    ],
+    [
+      "7ad55b27-67d5-43f4-893e-6a658ebd1239",
+      {
+        "action": "CREATE",
+        "entityType": "MEMBER",
+        "entityId": "08928bcf-e4e6-4360-94ca-05e517bd89e0",
+        "metadata": "{\"name\":\"4wtgr\"}",
+        "id": "7ad55b27-67d5-43f4-893e-6a658ebd1239",
+        "timestamp": "2025-08-18T11:32:58.202Z"
+      }
+    ],
+    [
+      "1e5275e3-6b0e-4c19-96e5-055d6d33ebc8",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "d1b4d572-3f60-4c16-bfb2-128ba15ec26c",
+        "metadata": "{\"orderIndex\":1}",
+        "id": "1e5275e3-6b0e-4c19-96e5-055d6d33ebc8",
+        "timestamp": "2025-08-18T11:33:06.557Z"
+      }
+    ],
+    [
+      "30fc49ac-c87d-4cd2-b8a0-70a8392901dd",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "710e58ad-849f-4157-b7f8-07d464fdc135",
+        "metadata": "{\"orderIndex\":2}",
+        "id": "30fc49ac-c87d-4cd2-b8a0-70a8392901dd",
+        "timestamp": "2025-08-18T11:33:06.577Z"
+      }
+    ],
+    [
+      "59e235dd-de88-4c60-9423-2709643cb365",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "3b500bab-d133-4279-9a4a-caad5c314e53",
+        "metadata": "{\"orderIndex\":3}",
+        "id": "59e235dd-de88-4c60-9423-2709643cb365",
+        "timestamp": "2025-08-18T11:33:06.580Z"
+      }
+    ],
+    [
+      "b5098f87-d6ef-44ad-a126-73f51ee9c89d",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "d7084f79-6665-4de7-9b41-e73e55c424f1",
+        "metadata": "{\"orderIndex\":4}",
+        "id": "b5098f87-d6ef-44ad-a126-73f51ee9c89d",
+        "timestamp": "2025-08-18T11:33:06.581Z"
+      }
+    ],
+    [
+      "51ff41b5-1f0d-4a4d-83c4-e748bd167cf5",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "bc70fd8e-e02a-4c06-a9af-045d9dcd7539",
+        "metadata": "{\"orderIndex\":5}",
+        "id": "51ff41b5-1f0d-4a4d-83c4-e748bd167cf5",
+        "timestamp": "2025-08-18T11:33:06.582Z"
+      }
+    ],
+    [
+      "f26696bf-d2a5-4757-ab0e-60cbce377747",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "e03b8d8d-fa35-415a-9dcd-b19d84276f8a",
+        "metadata": "{\"orderIndex\":6}",
+        "id": "f26696bf-d2a5-4757-ab0e-60cbce377747",
+        "timestamp": "2025-08-18T11:33:06.586Z"
+      }
+    ],
+    [
+      "2387fa21-b7e9-4566-b2ab-0226d04f3b4d",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "414f7fc4-9a70-4376-ba5d-df4c4635cae4",
+        "metadata": "{\"orderIndex\":7}",
+        "id": "2387fa21-b7e9-4566-b2ab-0226d04f3b4d",
+        "timestamp": "2025-08-18T11:33:06.588Z"
+      }
+    ],
+    [
+      "50016b22-dc7b-4fae-adca-b0b5b30a31ed",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "d1b4d572-3f60-4c16-bfb2-128ba15ec26c",
+        "metadata": "{\"orderIndex\":1}",
+        "id": "50016b22-dc7b-4fae-adca-b0b5b30a31ed",
+        "timestamp": "2025-08-18T11:33:10.492Z"
+      }
+    ],
+    [
+      "066df522-0b18-4c9e-9ffc-8d3de1f1a50d",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "710e58ad-849f-4157-b7f8-07d464fdc135",
+        "metadata": "{\"orderIndex\":2}",
+        "id": "066df522-0b18-4c9e-9ffc-8d3de1f1a50d",
+        "timestamp": "2025-08-18T11:33:10.493Z"
+      }
+    ],
+    [
+      "5589e815-36be-4d34-91ca-4be38e8cd598",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "3b500bab-d133-4279-9a4a-caad5c314e53",
+        "metadata": "{\"orderIndex\":3}",
+        "id": "5589e815-36be-4d34-91ca-4be38e8cd598",
+        "timestamp": "2025-08-18T11:33:10.495Z"
+      }
+    ],
+    [
+      "8077b7d0-9fbd-4f33-9d07-52164981e4da",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "d7084f79-6665-4de7-9b41-e73e55c424f1",
+        "metadata": "{\"orderIndex\":4}",
+        "id": "8077b7d0-9fbd-4f33-9d07-52164981e4da",
+        "timestamp": "2025-08-18T11:33:10.497Z"
+      }
+    ],
+    [
+      "4dbd99f4-b456-405f-bd58-31bee594ea0a",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "e03b8d8d-fa35-415a-9dcd-b19d84276f8a",
+        "metadata": "{\"orderIndex\":5}",
+        "id": "4dbd99f4-b456-405f-bd58-31bee594ea0a",
+        "timestamp": "2025-08-18T11:33:10.500Z"
+      }
+    ],
+    [
+      "16c3a1cc-75db-4ab9-a24b-727739dc88fb",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "bc70fd8e-e02a-4c06-a9af-045d9dcd7539",
+        "metadata": "{\"orderIndex\":6}",
+        "id": "16c3a1cc-75db-4ab9-a24b-727739dc88fb",
+        "timestamp": "2025-08-18T11:33:10.501Z"
+      }
+    ],
+    [
+      "36fe631c-3779-48cc-b86d-d867166442ff",
+      {
+        "action": "UPDATE",
+        "entityType": "ROTATION",
+        "entityId": "414f7fc4-9a70-4376-ba5d-df4c4635cae4",
+        "metadata": "{\"orderIndex\":7}",
+        "id": "36fe631c-3779-48cc-b86d-d867166442ff",
+        "timestamp": "2025-08-18T11:33:10.502Z"
+      }
+    ],
+    [
+      "781fd2f8-c510-48b4-8e0a-fa060892c98d",
+      {
+        "action": "CREATE",
+        "entityType": "MEETING",
+        "entityId": "0311d281-5e24-427f-8cbf-a5d56c516e45",
+        "metadata": "{\"title\":\"\"}",
+        "id": "781fd2f8-c510-48b4-8e0a-fa060892c98d",
+        "timestamp": "2025-08-18T11:33:56.015Z"
+      }
+    ],
+    [
+      "bce0a5a9-309e-4155-94d9-41e5ee5479b0",
+      {
+        "action": "CREATE",
+        "entityType": "MEETING",
+        "entityId": "fc0de77d-4561-4362-b8e5-8f40a18e3bc6",
+        "metadata": "{\"title\":\"\"}",
+        "id": "bce0a5a9-309e-4155-94d9-41e5ee5479b0",
+        "timestamp": "2025-08-18T11:34:55.771Z"
       }
     ]
   ]

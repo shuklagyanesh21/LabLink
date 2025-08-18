@@ -138,6 +138,10 @@ export class MemStorage implements IStorage {
       deletedAt: null
     };
     this.members.set(id, member);
+    
+    // Auto-add new member to presentation rotation
+    await this.addMemberToRotation(id);
+    
     await this.saveToFile();
     await this.createAuditLog({
       action: "CREATE",
@@ -177,6 +181,10 @@ export class MemStorage implements IStorage {
       deletedAt: new Date()
     };
     this.members.set(id, deletedMember);
+    
+    // Remove member from rotation when deleted
+    await this.removeMemberFromRotation(id);
+    
     await this.saveToFile();
     await this.createAuditLog({
       action: "DELETE",
@@ -310,6 +318,75 @@ export class MemStorage implements IStorage {
       });
     }
     return deleted;
+  }
+
+  // Helper method to add new member to rotation automatically
+  private async addMemberToRotation(memberId: string): Promise<void> {
+    try {
+      // Get current rotation entries to determine the next order index
+      const currentRotation = await this.getRotation();
+      
+      // Check if member is already in rotation to avoid duplicates
+      const existingEntry = currentRotation.find(r => r.memberId === memberId);
+      if (existingEntry) {
+        console.log('Member already in rotation, skipping');
+        return;
+      }
+      
+      const maxOrderIndex = currentRotation.length > 0 
+        ? Math.max(...currentRotation.map(r => r.orderIndex))
+        : -1;
+      
+      // Add the new member to the end of the rotation
+      const rotationEntry: Rotation = {
+        id: randomUUID(),
+        memberId,
+        orderIndex: maxOrderIndex + 1,
+        active: true,
+        lastPresentedAt: null
+      };
+      
+      this.rotation.set(rotationEntry.id, rotationEntry);
+      
+      await this.createAuditLog({
+        action: "CREATE",
+        entityType: "ROTATION",
+        entityId: rotationEntry.id,
+        metadata: JSON.stringify({ memberId, autoAdded: true })
+      });
+    } catch (error) {
+      console.error('Error in addMemberToRotation:', error);
+      // Don't throw - allow member creation to succeed even if rotation fails
+    }
+  }
+
+  // Helper method to remove member from rotation when deleted
+  private async removeMemberFromRotation(memberId: string): Promise<void> {
+    const rotationEntries = await this.getRotation();
+    const memberRotationEntry = rotationEntries.find(r => r.memberId === memberId);
+    
+    if (memberRotationEntry) {
+      // Remove the member's rotation entry
+      this.rotation.delete(memberRotationEntry.id);
+      
+      // Reorder remaining entries to fill the gap
+      const remainingEntries = rotationEntries
+        .filter(r => r.memberId !== memberId)
+        .sort((a, b) => a.orderIndex - b.orderIndex);
+      
+      // Update order indices to be sequential
+      remainingEntries.forEach((entry, index) => {
+        const updatedEntry = { ...entry, orderIndex: index };
+        this.rotation.set(entry.id, updatedEntry);
+      });
+      
+      await this.createAuditLog({
+        action: "DELETE",
+        entityType: "ROTATION",
+        entityId: memberRotationEntry.id,
+        metadata: JSON.stringify({ memberId, autoRemoved: true })
+      });
+    }
   }
 
   // Announcements

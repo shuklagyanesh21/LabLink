@@ -1,0 +1,20 @@
+
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+Warning: Invalid prop &#x60;data-replit-metadata&#x60; supplied to &#x60;React.Fragment&#x60;. React.Fragment can only have &#x60;key&#x60; and &#x60;children&#x60; props.
+CalendarView@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/src/components/calendar/CalendarView.tsx:29:25
+main
+div
+div
+Layout@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/src/components/Layout.tsx:29:49
+Home
+Route@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=154f1e95:323:13
+Switch@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=154f1e95:379:14
+Router
+AppProvider@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/src/contexts/AppContext.tsx:20:28
+Provider@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-M3NVYRND.js?v=154f1e95:48:47
+TooltipProvider@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=154f1e95:64:7
+QueryClientProvider@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=154f1e95:2804:27
+App
+t@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630
+value@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766
+8988/value/this.asyncTimer<@https://07db72e9-022b-42c6-8d23-b0cb0f4034ce-00-3kimz3bgzi9ar.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
